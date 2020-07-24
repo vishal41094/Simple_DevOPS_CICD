@@ -1,0 +1,475 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Keycloak Admin REST API",
+    "contact": {}
+  },
+  "host": "52.229.170.60:8080",
+  "basePath": "/auth",
+  "securityDefinitions": {},
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/realms/master/protocol/openid-connect/token": {
+      "post": {
+        "summary": "FetchToken",
+        "tags": [
+          "Keycloak"
+        ],
+        "operationId": "FetchToken",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "grant_type",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "username",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "client_id",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/FetchToken"
+            }
+          }
+        }
+      }
+    },
+    "/admin/realms/master/clients": {
+      "get": {
+        "summary": "FetchAllClientDetailsByRealmName",
+        "tags": [
+          "Keycloak"
+        ],
+        "operationId": "FetchAllClientDetailsByRealmName",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/FetchAllClientDetailsByRealmName"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "summary": "CreateClient",
+        "tags": [
+          "Keycloak"
+        ],
+        "operationId": "CreateClient",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateClientRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/admin/realms/master/clients/{clientId}/roles": {
+      "get": {
+        "summary": "GetClientLevelRolesByClientId",
+        "tags": [
+          "Keycloak"
+        ],
+        "operationId": "GetClientLevelRolesByClientId",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "clientId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "post": {
+        "summary": "CreateClientLevelRole",
+        "tags": [
+          "Keycloak"
+        ],
+        "operationId": "CreateClientLevelRole",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "clientId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateClientLevelRoleRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/admin/realms/master/users": {
+      "get": {
+        "summary": "FetchUsersDetailsByRealmName",
+        "tags": [
+          "Keycloak"
+        ],
+        "operationId": "FetchUsersDetailsByRealmName",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateNewUserRequest"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "summary": "CreateNewUser",
+        "tags": [
+          "Keycloak"
+        ],
+        "operationId": "CreateNewUser",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateNewUserRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "FetchToken": {
+      "title": "FetchToken",
+      "example": {
+        "access_token": "Ndu0AVWhA6TqjPHP610Hga6devz3nCeFMLsw3RvSAv7MMB1jVO55ea8sXhhivAf0Av_1aoLRvhEnK03h12w3dd2tkdAVjef4JBc91lyssdz2Mquqwq_mfeFA1VNEgcqfXcJSVwBs4Q0S8fg",
+        "expires_in": 60,
+        "refresh_expires_in": 1800,
+        "refresh_token": "bGkiLCJzZXNzaW9uX3N0YXRlIjoiOTBiMDViNzMtMWU5NS00YTAzLWI5ZWUtOWQ0MmNmNzgxMzA2Iiwic2NvcGUiOiJwcm9maWxlIGVtYWlsInG1SpcpSYsx35rRxtgQJ5A_r1mxeDZJuohRYH7dPMTu4",
+        "token_type": "bearer",
+        "not-before-policy": 0,
+        "session_state": "90b05b73-1e95-4a03-b9ee-9d42cf781306",
+        "scope": "profile email"
+      },
+      "type": "object",
+      "properties": {
+        "access_token": {
+          "type": "string"
+        },
+        "expires_in": {
+          "type": "integer"
+        },
+        "refresh_expires_in": {
+          "type": "integer"
+        },
+        "refresh_token": {
+          "type": "string"
+        },
+        "toke_type": {
+          "type": "boolean"
+        },
+        "not-before-policy": {
+          "type": "integer"
+        },
+        "scope": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "access_token",
+        "expires_in",
+        "refresh_expires_in",
+        "toke_type",
+        "not-before-policy",
+        "scope"
+      ]
+    },
+    "FetchAllClientDetailsByRealmName": {
+      "title": "FetchAllClientDetailsByRealmName",
+      "example": {
+        "id": "8ee59380-97f0-4cc5-b99f-1d94212e3aa6",
+        "name": "manage-account-links",
+        "description": "${role_manage-account-links}",
+        "composite": false,
+        "clientRole": true,
+        "containerId": "80b93d84-8c82-47f9-aaa3-c94d4b19fafa"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "composite": {
+          "type": "boolean"
+        },
+        "clientRole": {
+          "type": "boolean"
+        },
+        "containerId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "composite",
+        "clientRole",
+        "containerId"
+      ]
+    },
+    "CreateClientRequest": {
+      "title": "CreateClientRequest",
+      "example": {
+        "clientId": "experiment",
+        "rootUrl": "${authBaseUrl}",
+        "baseUrl": "/realms/master/account/",
+        "surrogateAuthRequired": false,
+        "enabled": true,
+        "redirectUris": [
+          "/realms/master/account/*"
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "clientId": {
+          "type": "string"
+        },
+        "rootUrl": {
+          "type": "string"
+        },
+        "baseUrl": {
+          "type": "string"
+        },
+        "surrogateAuthRequired": {
+          "type": "boolean"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "redirectUris": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "clientId",
+        "rootUrl",
+        "baseUrl",
+        "surrogateAuthRequired",
+        "enabled",
+        "redirectUris"
+      ]
+    },
+    "CreateClientLevelRoleRequest": {
+      "title": "CreateClientLevelRoleRequest",
+      "example": {
+        "name": "new role",
+        "composite": false,
+        "clientRole": true
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "composite": {
+          "type": "boolean"
+        },
+        "clientRole": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "composite",
+        "clientRole"
+      ]
+    },
+    "CreateNewUserRequest": {
+      "title": "CreateNewUserRequest",
+      "example": {
+        "username": "UserCreatedFromPOSTMAN",
+        "enabled": true
+      },
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "username",
+        "enabled"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "name": "Keycloak",
+      "description": ""
+    }
+  ]
+}
