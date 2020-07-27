@@ -5,7 +5,7 @@
     "title": "Keycloak Admin REST API",
     "contact": {}
   },
-  "host": "13.126.255.110:80",
+  "host": "13.235.19.223:80",
   "basePath": "/auth",
   "securityDefinitions": {},
   "schemes": [
